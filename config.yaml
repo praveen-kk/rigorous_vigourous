@@ -1,0 +1,58 @@
+---
+# Source: cd-code-deploy-data-api/templates/stage.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    softwareId: '7cef23221739905d81e7fb80d4a3e5ec7bbf16e8'
+    softwareName: 'cd-code-deploy-data-api'
+  name: cd-code-deploy-data-api-service
+  namespace: 'cd-data-stg'
+spec:
+  ports:
+  - name: web
+    port: 5000
+    protocol: TCP
+  selector:
+    app: cd-code-deploy-data-api
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    softwareId: '7cef23221739905d81e7fb80d4a3e5ec7bbf16e8'
+    softwareName: 'cd-code-deploy-data-api'
+  name: cd-code-deploy-data-api
+  namespace: 'cd-data-stg'
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cd-code-deploy-data-api
+  template:
+    metadata:
+      labels:
+        app: cd-code-deploy-data-api
+        environment: stage
+        softwareId: '7cef23221739905d81e7fb80d4a3e5ec7bbf16e8'
+        softwareName: 'cd-code-deploy-data-api'
+      namespace: 'cd-data-stg'
+    spec:
+      containers:
+      - env:
+        - name: RUN_PROFILE
+          value: stage
+        - name: SPINNAKER_BASE_URL
+          value: https://spinnaker-alln-gate-stg.cisco.com
+        - name: SPINNAKER_DECK_URL
+          value: https://spinnaker-alln-deck-stg.cisco.com
+        image: 'containers.cisco.com/cd-data-plane/cd-code-deploy-data-api:${trigger["parameters"]["imageTag"]}'
+        imagePullPolicy: IfNotPresent
+        name: cd-code-deploy-data-api
+        ports:
+        - containerPort: 5000
+      imagePullSecrets:
+      - name: cd-data-plane-code-artifact-bot-pull-secret
+---
+

@@ -1,0 +1,6 @@
+Feb  2 15:20:02 tank sshd[14870]: Failed password for root from 143.100.67.173 port 13356 ssh2
+Feb  2 15:20:07 tank sshd[14874]: Failed password for root from 143.100.67.173 port 30595 ssh2
+Feb  2 15:20:12 tank sshd[14874]: Failed password for root from 143.100.67.173 port 30595 ssh2
+Feb  2 15:20:16 tank sshd[14874]: Failed password for root from 143.100.67.173 port 30595 ssh2
+Feb  2 15:20:20 tank sshd[14874]: Failed password for root from 143.100.67.173 port 30595 ssh2
+Feb  2 15:20:23 tank sshd[14874]: Accepted password for root from 143.100.67.173

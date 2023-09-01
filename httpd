@@ -1,0 +1,22 @@
+---
+-name: verify and start httpd
+hosts: all
+become: yes
+
+tasks:
+  - name: check httpd service
+    systemd:
+      name: httpd
+      state: started
+      enabled: yes
+      register: httpd_status
+
+  - name: start HTTP status
+    systemd: httpd
+    state: started
+    enabled: yes
+    when: httpd_status.register
+
+
+
+

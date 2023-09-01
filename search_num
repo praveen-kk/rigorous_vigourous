@@ -1,0 +1,10 @@
+def solution(Arr, k):
+    if k in Arr:
+        return "YES"
+    else:
+        return "NO"
+
+A= [2, 4, 6, 3, 1, 9 ,44]
+k=99
+print(solution(A, k))
+

@@ -1,0 +1,6 @@
+Open the file in read mode using the open() function.
+Read the content of the file using the read() or readlines() method.
+Split the content into individual words using the split() method.
+Create a set to store the unique words.
+Iterate over each word and add it to the set.
+Print the set of unique words.
